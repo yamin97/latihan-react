@@ -39,6 +39,26 @@ class Home extends Component{
         })
     }
 
+    submitData = () => {
+        var namaDepan = this.refs.namaDepan.value
+        var namaBelakang = this.refs.namaBelakang.value
+        var email = this.refs.email.value
+        console.log(namaDepan)
+        console.log(namaBelakang)
+        console.log(email)
+        Axios.post('http://localhost:2000/users', {
+            first_name: namaDepan,
+            last_name: namaBelakang,
+            email: email
+        })
+        .then((res) => {
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render(){
         return(
             <div>
@@ -56,18 +76,9 @@ class Home extends Component{
                     </tbody>
                 </Table>
                 <Form>
-                  <FormGroup>
-                    <Label for="first-name">First Name</Label>
-                    <Input type="text" name="first-name" ref="first-name" placeholder="First Name" />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="last-name">Last Name</Label>
-                    <Input type="text" name="last-name" ref="last-name" placeholder="Last Name" />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="email">Email</Label>
-                    <Input type="text" name="email" ref="email" placeholder="Email" />
-                  </FormGroup>
+                  <input type="text" className='form-control' ref='namaDepan'/>
+                  <input type="text" className='form-control' ref='namaBelakang'/>
+                  <input type="text" className='form-control' ref='email'/>
                   <Button color='primary' onClick={this.submitData}>
                       Submit
                   </Button>
