@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import { Table, Input, Button } from 'reactstrap';
+import { Table, Input, Button, ButtonDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
+import Kartu from '../components/card'
 
 class Home extends Component{
 
     state = {
         data : [],
         buah: [],
-        selectedId: null
+        selectedId: null,
+        dropdownOpen : false
     }
 
     componentDidMount(){
@@ -94,6 +96,14 @@ class Home extends Component{
         })
     }
 
+    renderCard = () => {
+        return this.state.data.map((val) => {
+            return(
+                <Kartu contoh={val.first_name} contoh2={val.last_name} contoh3={val.email}/>
+            )
+        })
+    }
+
     submitData = () => {
         var namaDepan = this.namaDepan.value;
         var namaBelakang = this.namaBelakang.value;
@@ -125,6 +135,19 @@ class Home extends Component{
     render(){
         return(
             <div>
+                
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.setState({dropdownOpen: !this.state.dropdownOpen})}>
+                  <DropdownToggle caret>
+                    Button Dropdown
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem header>Header</DropdownItem>
+                    <DropdownItem disabled>Action</DropdownItem>
+                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem>Another Action</DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
                 <Table>
                     <thead>
                         <tr>
@@ -159,7 +182,7 @@ class Home extends Component{
                         </tr>
                     </tfoot>
                 </Table>
-                
+                {this.renderCard()}
             </div>
         )
     }
