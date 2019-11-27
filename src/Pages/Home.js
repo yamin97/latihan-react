@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Axios from 'axios'
-import { Table, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Table, Input, Button } from 'reactstrap';
 
 class Home extends Component{
 
@@ -15,11 +14,6 @@ class Home extends Component{
         .then((res) => {
             this.setState({data : res.data})
             console.log(this.state.data)
-            Axios.get('http://localhost:2000/products')
-            .then((res) => {
-                console.log(res.data)
-                this.setState({buah : res.data})
-            })
         })
         .catch((err) => {
             console.log(err)
@@ -29,20 +23,37 @@ class Home extends Component{
     renderUserData = () => {
         return this.state.data.map((val, index) => {
             return(
-                    <tr>
-                      <th scope="row">{index+1}</th>
-                      <td>{val.first_name}</td>
-                      <td>{val.last_name}</td>
-                      <td>{val.email}</td>
-                    </tr>
+                <tr key={val.id}>
+                  <th scope="row">{index+1}</th>
+                  <td>{val.first_name}</td>
+                  <td>{val.last_name}</td>
+                  <td>{val.email}</td>
+                  <td><Button color='danger' onClick={() => this.deleteData(val.id)}>Delete</Button></td>
+                </tr>
             )
         })
     }
 
+    deleteData = (id) => {
+        Axios.delete(`http://localhost:2000/users/${id}`)
+        .then((res) => {
+            // console.log(res.data)
+            // this.setState({data: res.data})
+            Axios.get('http://localhost:2000/users')
+            .then((res) => {
+                console.log(res.data)
+                this.setState({data: res.data})
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     submitData = () => {
-        var namaDepan = this.refs.namaDepan.value
-        var namaBelakang = this.refs.namaBelakang.value
-        var email = this.refs.email.value
+        var namaDepan = this.namaDepan.value;
+        var namaBelakang = this.namaBelakang.value;
+        var email = this.email.value;
         console.log(namaDepan)
         console.log(namaBelakang)
         console.log(email)
@@ -52,7 +63,15 @@ class Home extends Component{
             email: email
         })
         .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
+            // this.setState({data: res.data})
+            Axios.get('http://localhost:2000/users')
+            .then((res) => {
+                this.setState({data: res.data})
+                this.namaDepan.value = '';
+                this.namaBelakang.value = '';
+                this.email.value = '';
+            })
         })
         .catch((err) => {
             console.log(err)
@@ -74,15 +93,29 @@ class Home extends Component{
                     <tbody>
                         {this.renderUserData()}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                #
+                            </td>
+                            <td>
+                                <Input type="text" innerRef={(namaDepan) => this.namaDepan = namaDepan}/>
+                            </td>
+                            <td>
+                                <Input type="text" innerRef={(namaBelakang) => this.namaBelakang = namaBelakang}/>
+                            </td>
+                            <td>
+                                <Input type="text" innerRef={(email) => this.email = email}/>
+                            </td>
+                            <td>
+                                <Button color='primary' onClick={this.submitData}>
+                                    Submit
+                                </Button>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </Table>
-                <Form>
-                  <input type="text" className='form-control' ref='namaDepan'/>
-                  <input type="text" className='form-control' ref='namaBelakang'/>
-                  <input type="text" className='form-control' ref='email'/>
-                  <Button color='primary' onClick={this.submitData}>
-                      Submit
-                  </Button>
-                </Form>
+                
             </div>
         )
     }

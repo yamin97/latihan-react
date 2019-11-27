@@ -3,10 +3,8 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -25,7 +23,7 @@ class Header extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-        <Link className='navbar-brand' to='./' style={{color: 'white'}}>
+          <Link className='navbar-brand' to='./' style={{color: 'white'}}>
               home
           </Link>
 
