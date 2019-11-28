@@ -1,18 +1,16 @@
 import React from 'react';
-import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Card, CardTitle, CardText } from 'reactstrap';
 
 const Kartu = (props) => {
   console.log(props)
     return (
-    <Row>
-      <Col sm="6">
-        <Card body>
-    <CardTitle>{props.contoh}</CardTitle>
-    <CardText>{props.contoh2}</CardText>
-    <Button>{props.contoh3}</Button>
-        </Card>
-      </Col>
-    </Row>
+        <div className='col-2'>
+            <Card body style={{padding: '50px'}}>
+                <CardTitle>{props.contoh}</CardTitle>
+                <CardText>{props.contoh2}</CardText>
+                <CardText>{props.contoh3}</CardText>
+            </Card>
+        </div>
   );
 };
 

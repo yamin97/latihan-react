@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import { Table, Input, Button, ButtonDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { Table, Input, Button } from 'reactstrap';
 import Kartu from '../components/card'
+import DropdownCustom from '../components/dropdown'
 
 class Home extends Component{
 
@@ -135,19 +136,6 @@ class Home extends Component{
     render(){
         return(
             <div>
-                
-                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={() => this.setState({dropdownOpen: !this.state.dropdownOpen})}>
-                  <DropdownToggle caret>
-                    Button Dropdown
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
-                  </DropdownMenu>
-                </ButtonDropdown>
                 <Table>
                     <thead>
                         <tr>
@@ -182,7 +170,11 @@ class Home extends Component{
                         </tr>
                     </tfoot>
                 </Table>
-                {this.renderCard()}
+                {/* {this.renderCard()} */}
+                <DropdownCustom dataList={this.state.data}/>
+                <div className='row'>
+                    {this.renderCard()}
+                </div>
             </div>
         )
     }
