@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class NotHome extends Component{
     render(){
+        console.log(this.props.count)
         return(
             <div>
                 Ini bukan home
@@ -14,4 +16,10 @@ class NotHome extends Component{
     }
 }
 
-export default NotHome
+const mapStatetoProps = (state) => {
+    return {
+        count : state.count
+    }
+}
+
+export default connect(mapStatetoProps)(NotHome)

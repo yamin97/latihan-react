@@ -2,9 +2,9 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'reactstrap';
 
 const Kartu = (props) => {
-  console.log(props)
+  console.log(props.data)
     return (
-        <div className='col-2'>
+        <div className='col-4'>
             <Card body style={{padding: '50px'}}>
                 <CardTitle>{props.contoh}</CardTitle>
                 <CardText>{props.contoh2}</CardText>

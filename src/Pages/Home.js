@@ -100,7 +100,7 @@ class Home extends Component{
     renderCard = () => {
         return this.state.data.map((val) => {
             return(
-                <Kartu contoh={val.first_name} contoh2={val.last_name} contoh3={val.email}/>
+                <Kartu key={val.id} contoh={val.first_name} contoh2={val.last_name} contoh3={val.email} data={'halo'} />
             )
         })
     }
@@ -118,8 +118,6 @@ class Home extends Component{
             email: email
         })
         .then((res) => {
-            // console.log(res.data)
-            // this.setState({data: res.data})
             Axios.get('http://localhost:2000/users')
             .then((res) => {
                 this.setState({data: res.data})
