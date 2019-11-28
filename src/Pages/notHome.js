@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { add, minus } from '../redux/action'
+import {Button} from 'reactstrap'
 
 class NotHome extends Component{
     render(){
@@ -11,6 +13,13 @@ class NotHome extends Component{
                 <Link to='/' className='btn btn-outline-secondary'>
                    home
                 </Link>
+                <Button onClick={this.props.minus}>
+                    -
+                </Button>
+                {this.props.count}
+                <Button onClick={this.props.add}>
+                    +
+                </Button>
             </div>
         )
     }
@@ -18,8 +27,8 @@ class NotHome extends Component{
 
 const mapStatetoProps = (state) => {
     return {
-        count : state.count
+        count : state.count.count
     }
 }
 
-export default connect(mapStatetoProps)(NotHome)
+export default connect(mapStatetoProps, { add, minus })(NotHome)

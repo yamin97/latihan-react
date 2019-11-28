@@ -3,6 +3,7 @@ import Axios from 'axios'
 import { Table, Input, Button } from 'reactstrap';
 import Kartu from '../components/card'
 import DropdownCustom from '../components/dropdown'
+import {connect} from 'react-redux'
 
 class Home extends Component{
 
@@ -132,6 +133,7 @@ class Home extends Component{
     }
 
     render(){
+        console.log(this.props.count)
         return(
             <div>
                 <Table>
@@ -178,4 +180,10 @@ class Home extends Component{
     }
 }
 
-export default Home
+const mapStatetoProps = (state) => {
+    return{
+        count: state.count
+    }
+}
+
+export default connect(mapStatetoProps)(Home)
