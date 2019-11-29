@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-    count: 100
+    count: 100,
+    contoh: 123
 }
 
 const countReducer = (state = INITIAL_STATE, action) => {

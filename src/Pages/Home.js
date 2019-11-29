@@ -11,10 +11,12 @@ class Home extends Component{
         data : [],
         buah: [],
         selectedId: null,
-        dropdownOpen : false
+        dropdownOpen : false,
+        nama: 'andi'
     }
 
     componentDidMount(){
+        this.setState({nama: 'lian'})
         Axios.get('http://localhost:2000/users')
         .then((res) => {
             console.log(res.data)

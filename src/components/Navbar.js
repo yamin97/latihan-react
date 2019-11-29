@@ -10,6 +10,9 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
   import { Link } from 'react-router-dom'
+  import { connect } from 'react-redux'
+  import  { logout } from '../redux/action'
+
 class Header extends React.Component {
     state = {
       isOpen: false
@@ -36,8 +39,14 @@ class Header extends React.Component {
                   </Link>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
+                <DropdownToggle nav caret style={{color: 'white'}}>
+                  {
+                    this.props.username
+                    ?
+                    this.props.username
+                    :
+                    'Login Here'
+                  }
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
@@ -47,8 +56,8 @@ class Header extends React.Component {
                     Option 2
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                  <DropdownItem onClick={this.props.logout}>
+                    Log Out
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -60,5 +69,10 @@ class Header extends React.Component {
   }
 }
 
+const mapStatetoProps = (state) => {
+  return{
+    username: state.user.username
+  }
+}
 
-export default Header;
+export default connect(mapStatetoProps, {logout})(Header);

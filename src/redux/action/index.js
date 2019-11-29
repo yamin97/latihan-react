@@ -1,1 +1,2 @@
-export * from './countAction'
+export * from './countAction';
+export * from './authAction';
