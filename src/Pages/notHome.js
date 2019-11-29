@@ -1,25 +1,34 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { add, minus } from '../redux/action'
-import {Button} from 'reactstrap'
+import { add, minus, ganti } from '../redux/action'
+import { Button, Input } from 'reactstrap'
 
 class NotHome extends Component{
+    
+    edit = () => {
+        let input = this.text.value;
+        console.log(input)
+    }
+
     render(){
         console.log(this.props.count)
         return(
-            <div>
-                Ini bukan home
-                <Link to='/' className='btn btn-outline-secondary'>
-                   home
-                </Link>
-                <Button onClick={this.props.minus}>
-                    -
-                </Button>
-                {this.props.count}
-                <Button onClick={this.props.add}>
-                    +
-                </Button>
+            <div className='d-flex justify-content-center row'>
+                <div>
+                    <Button onClick={this.props.minus}>
+                        -
+                    </Button>
+                    {this.props.count}
+                    <Button onClick={this.props.add}>
+                        +
+                    </Button>
+                </div>
+                <div>
+                    <Input type='text' innerRef={(text) => this.text = text}/>
+                    <Button  onClick={this.edit}>
+                        Click Me !
+                    </Button>
+                </div>
             </div>
         )
     }
@@ -31,4 +40,4 @@ const mapStatetoProps = (state) => {
     }
 }
 
-export default connect(mapStatetoProps, { add, minus })(NotHome)
+export default connect(mapStatetoProps, { add, minus, ganti })(NotHome)

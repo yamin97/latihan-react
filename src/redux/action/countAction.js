@@ -9,3 +9,10 @@ export const minus = () => {
         type: 'MINUS'
     }
 }
+
+export const ganti = (data) => {
+    return{
+        type: 'GANTI',
+        payload: data
+    }
+}

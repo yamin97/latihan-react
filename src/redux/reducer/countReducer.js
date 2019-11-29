@@ -1,13 +1,15 @@
 const INITIAL_STATE = {
-    count: 0
+    count: 100
 }
 
 const countReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case 'PLUS':
-           return{...state, count:action.payl} 
+           return{...state, count: state.count + 1} 
         case 'MINUS':
-            return{...state, count: state.count-1}
+            return{...state, count: state.count - 1}
+        case 'GANTI':
+            return{...state, count: action.payload}
         default:
             return state
     }
