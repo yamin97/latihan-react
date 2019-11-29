@@ -34,6 +34,7 @@ class NotHome extends Component{
     render(){
         console.log(this.props.count)
         console.log(this.props.username)
+        console.log(this.props.role)
         return(
             <div className='d-flex justify-content-center row'>
                 {/* <div>
@@ -60,7 +61,8 @@ class NotHome extends Component{
 const mapStatetoProps = (state) => {
     return {
         count : state.count.count,
-        username: state.user.username
+        username: state.user.username,
+        role: state.user.role
     }
 }
 
