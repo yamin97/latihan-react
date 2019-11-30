@@ -33,11 +33,11 @@ class Header extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              {/* <NavItem>
                   <Link to='/not-home'>
                       home
                   </Link>
-              </NavItem>
+              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret style={{color: 'white'}}>
                   {
@@ -45,19 +45,16 @@ class Header extends React.Component {
                     ?
                     this.props.username
                     :
-                    'Login Here'
+                    'Click Me'
                   }
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
+                    Login
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.props.logout}>
-                    Log Out
+                    Register
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

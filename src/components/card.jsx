@@ -2,13 +2,13 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'reactstrap';
 
 const Kartu = (props) => {
-  console.log(props.data)
+  console.log(props)
     return (
         <div className='mx-auto'>
             <Card body style={{padding: '50px', width: '300px'}}>
-                <CardTitle>{props.contoh}</CardTitle>
-                <CardText>{props.contoh2}</CardText>
-                <CardText>{props.contoh3}</CardText>
+                <CardTitle><h3>{props.nama}</h3></CardTitle>
+                <CardText>Rp. {props.harga.toLocaleString()}</CardText>
+                <CardText><img src={props.image} alt='products' style={{width: '100px', objectFit: 'cover', height: '100px' }}/></CardText>
             </Card>
         </div>
   );

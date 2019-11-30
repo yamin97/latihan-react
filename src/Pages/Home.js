@@ -1,191 +1,55 @@
 import React, { Component } from 'react'
+import Carousel from '../components/carouselHome'
 import Axios from 'axios'
 import { Table, Input, Button } from 'reactstrap';
 import Kartu from '../components/card'
 import DropdownCustom from '../components/dropdown'
 import {connect} from 'react-redux'
+import { API_URL } from '../helpers/apiUrl';
 
 class Home extends Component{
 
     state = {
-        data : [],
-        buah: [],
-        selectedId: null,
-        dropdownOpen : false,
-        nama: 'andi'
+        data : []
     }
 
     componentDidMount(){
-        this.setState({nama: 'lian'})
-        Axios.get('http://localhost:2000/users')
+        Axios.get(API_URL + '/products')
         .then((res) => {
             console.log(res.data)
-            this.setState({data : res.data})
-            // console.log(this.state.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-    editData = (id) => {
-        this.setState({selectedId: id})
-        console.log(this.state.selectedId)
-    }
-
-    renderUserData = () => {
-        return this.state.data.map((val, index) => {
-            if(this.state.selectedId === val.id){
-                return(
-                    <tr key={val.id}>
-                        <td></td>
-                        <td>
-                            <Input type="text" innerRef={(namaDepanEdit) => this.namaDepanEdit = namaDepanEdit}/>
-                        </td>
-                        <td>
-                            <Input type="text" innerRef={(namaBelakangEdit) => this.namaBelakangEdit = namaBelakangEdit}/>
-                        </td>
-                        <td>
-                            <Input type="text" innerRef={(emailEdit) => this.emailEdit = emailEdit}/>
-                        </td>
-                        <td><Button color='primary' onClick={() => this.confirmEdit(val.id)}>Confirm</Button></td>
-                        <td><Button color='secondary' onClick={() => this.setState({selectedId: null})}>Cancel</Button></td>
-                    </tr>
-                )
-            }
-            return(
-                <tr key={val.id}>
-                  <th scope="row">{index+1}</th>
-                  <td>{val.first_name}</td>
-                  <td>{val.last_name}</td>
-                  <td>{val.email}</td>
-                  <td><Button color='success' onClick={() => this.editData(val.id)}>Edit</Button></td>
-                  <td><Button color='danger' onClick={() => this.deleteData(val.id)}>Delete</Button></td>
-                </tr>
-            )
+            this.setState({data: res.data})
         })
     }
 
-    confirmEdit = (id) => {
-        var namaDepan = this.namaDepanEdit.value;
-        var namaBelakang = this.namaBelakangEdit.value;
-        var email = this.emailEdit.value;
-        Axios.put(`http://localhost:2000/users/${id}`,{
-            first_name: namaDepan,
-            last_name:namaBelakang,
-            email:email,
-        })
-        .then(() => {
-            Axios.get('http://localhost:2000/users')
-            .then((res) => {
-                console.log(res.data)
-                this.setState({data: res.data, selectedId: null})
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-
-    deleteData = (id) => {
-        Axios.delete(`http://localhost:2000/users/${id}`)
-        .then(() => {
-            Axios.get('http://localhost:2000/users')
-            .then((res) => {
-                console.log(res.data)
-                this.setState({data: res.data})
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-
-    renderCard = () => {
+    renderCardProduct = () => {
         return this.state.data.map((val) => {
             return(
-                <Kartu key={val.id} contoh={val.first_name} contoh2={val.last_name} contoh3={val.email} data={'halo'} />
+                <Kartu nama={val.nama} harga={val.harga} image={val.image}/>
             )
         })
     }
 
-    submitData = () => {
-        var namaDepan = this.namaDepan.value;
-        var namaBelakang = this.namaBelakang.value;
-        var email = this.email.value;
-        console.log(namaDepan)
-        console.log(namaBelakang)
-        console.log(email)
-        Axios.post('http://localhost:2000/users', {
-            first_name: namaDepan,
-            last_name: namaBelakang,
-            email: email
-        })
-        .then((res) => {
-            Axios.get('http://localhost:2000/users')
-            .then((res) => {
-                this.setState({data: res.data})
-                this.namaDepan.value = '';
-                this.namaBelakang.value = '';
-                this.email.value = '';
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+    renderCarousel = () => {
+        return(
+            <Carousel productImage={this.state.data} />
+        )
     }
 
     render(){
-        console.log(this.props.count)
         return(
             <div>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderUserData()}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>
-                                #
-                            </td>
-                            <td>
-                                <Input type="text" innerRef={(namaDepan) => this.namaDepan = namaDepan}/>
-                            </td>
-                            <td>
-                                <Input type="text" innerRef={(namaBelakang) => this.namaBelakang = namaBelakang}/>
-                            </td>
-                            <td>
-                                <Input type="text" innerRef={(email) => this.email = email}/>
-                            </td>
-                            <td>
-                                <Button color='primary' onClick={this.submitData}>
-                                    Submit
-                                </Button>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </Table>
-                {/* {this.renderCard()} */}
-                <DropdownCustom dataList={this.state.data}/>
-                <div className='row'>
-                    {this.renderCard()}
+                <div className='d-flex justify-content-center' >
+                    <div className='mt-5'>
+                        <Carousel data={this.state.data}/>
+                    </div>
+                </div>
+                <div className='d-flex justify-content-center row mt-5'>
+                    {this.renderCardProduct()}
                 </div>
             </div>
         )
     }
 }
 
-const mapStatetoProps = (state) => {
-    return{
-        count: state.count
-    }
-}
 
-export default connect(mapStatetoProps)(Home)
+export default (Home)
