@@ -10,3 +10,10 @@ export const logout = () => {
         type: 'LOGOUT'
     }
 }
+
+export const contoh = () => {
+    return{
+        type: 'CONTOH'
+    }
+}
+

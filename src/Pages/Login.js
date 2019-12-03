@@ -22,7 +22,7 @@ class Login extends Component{
                 if(res.data.length === 0){
                     alert('username or password invalid')
                 }else{
-                    console.log(res.data)
+                    // console.log(res.data[0])
                     this.props.login(res.data[0])
                 }
             })

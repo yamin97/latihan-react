@@ -13,6 +13,12 @@ const authReducer = (state = INITAL_STATE, action) => {
             }
         case 'LOGOUT':
             return INITAL_STATE
+        case 'CONTOH':
+            return{
+                ...state,
+                username: 'halo',
+                role: 'user'
+            }
         default:
             return state
     } 

@@ -10,7 +10,8 @@ import { API_URL } from '../helpers/apiUrl';
 class Home extends Component{
 
     state = {
-        data : []
+        data : [],
+        nama :''
     }
 
     componentDidMount(){

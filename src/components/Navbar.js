@@ -56,6 +56,11 @@ class Header extends React.Component {
                       <DropdownItem  onClick={this.props.logout}>
                         Log Out
                       </DropdownItem>
+                      <Link to='/belajar'>
+                        <DropdownItem>
+                          belajar
+                        </DropdownItem>
+                      </Link>
                     </DropdownMenu>
                     :
                     <DropdownMenu right>
