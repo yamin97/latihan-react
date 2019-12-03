@@ -4,7 +4,7 @@ import { add, minus, login } from '../redux/action'
 import { Button, Input } from 'reactstrap'
 import Axios from 'axios'
 
-class NotHome extends Component{
+class Login extends Component{
 
     
     loginUser = () => {
@@ -37,15 +37,6 @@ class NotHome extends Component{
         console.log(this.props.role)
         return(
             <div className='d-flex justify-content-center row'>
-                {/* <div>
-                    <Button onClick={this.props.minus}>
-                        -
-                    </Button>
-                    {this.props.count}
-                    <Button onClick={this.props.add}>
-                        +
-                    </Button>
-                </div> */}
                 <div>
                     <Input type='text' innerRef={(text) => this.text = text}/>
                     <Input type='password' innerRef={(pass) => this.pass = pass}/>
@@ -66,4 +57,4 @@ const mapStatetoProps = (state) => {
     }
 }
 
-export default connect(mapStatetoProps, { add, minus, login })(NotHome)
+export default connect(mapStatetoProps, { add, minus, login })(Login)

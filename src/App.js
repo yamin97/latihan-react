@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Home from './Pages/Home';
-import NotHome from './Pages/notHome';
+import Login from './Pages/Login';
 import Navbar from './components/Navbar';
 import List from './Pages/List'
 
@@ -14,7 +14,7 @@ class App extends Component{
         <Navbar />
         <Route path='/' component={Home} exact />   
         <Route path='/list' component={List} />   
-        <Route path='/not-home' component={NotHome} />      
+        <Route path='/login' component={Login} />      
       </div>
     )
   }

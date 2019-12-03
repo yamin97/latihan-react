@@ -54,7 +54,7 @@ const CarouselHome = (props) => {
         onExited={() => setAnimating(false)}
         key={item.id}
       >
-        <img src={item.image} alt={item.nama} style={{width: '300px', height: '300px'}}/>
+        <img src={item.image} alt={item.nama} style={{width: '300px', height: '300px', objectFit: 'cover'}}/>
         {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
       </CarouselItem>
     );

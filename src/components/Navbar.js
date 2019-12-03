@@ -49,9 +49,11 @@ class Header extends React.Component {
                   }
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Login
-                  </DropdownItem>
+                  <Link to='/login'>
+                    <DropdownItem>
+                      Login
+                    </DropdownItem>
+                  </Link>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.props.logout}>
                     Register
