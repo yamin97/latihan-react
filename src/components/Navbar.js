@@ -4,7 +4,7 @@ import {
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem,
+  // NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -23,6 +23,7 @@ class Header extends React.Component {
     });
   }
   render() {
+    console.log(this.props.role)
     return (
       <div>
         <Navbar color="dark" dark expand="md">
@@ -41,24 +42,34 @@ class Header extends React.Component {
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret style={{color: 'white'}}>
                   {
-                    this.props.username
+                    this.props.role
                     ?
                     this.props.username
                     :
                     'Click Me'
                   }
                 </DropdownToggle>
-                <DropdownMenu right>
-                  <Link to='/login'>
+                  {
+                    this.props.role
+                    ? 
+                    <DropdownMenu right>
+                      <DropdownItem  onClick={this.props.logout}>
+                        Log Out
+                      </DropdownItem>
+                    </DropdownMenu>
+                    :
+                    <DropdownMenu right>
+                      <Link to='/login'>
+                        <DropdownItem>
+                          Login
+                        </DropdownItem>
+                      </Link>
+                    <DropdownItem divider />
                     <DropdownItem>
-                      Login
+                      Register
                     </DropdownItem>
-                  </Link>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={this.props.logout}>
-                    Register
-                  </DropdownItem>
-                </DropdownMenu>
+                  </DropdownMenu>
+                  }
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
@@ -70,7 +81,8 @@ class Header extends React.Component {
 
 const mapStatetoProps = (state) => {
   return{
-    username: state.user.username
+    username: state.user.username,
+    role: state.user.role
   }
 }
 

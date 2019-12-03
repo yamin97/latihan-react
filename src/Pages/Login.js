@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { add, minus, login } from '../redux/action'
 import { Button, Input } from 'reactstrap'
 import Axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component{
 
@@ -32,9 +33,13 @@ class Login extends Component{
     }
 
     render(){
-        console.log(this.props.count)
-        console.log(this.props.username)
-        console.log(this.props.role)
+        if(this.props.username !== ''){
+            return(
+                <Redirect to='/'>
+
+                </Redirect>
+            )
+        }
         return(
             <div className='d-flex justify-content-center row'>
                 <div>

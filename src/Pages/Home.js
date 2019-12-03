@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Carousel from '../components/carouselHome'
 import Axios from 'axios'
-import { Table, Input, Button } from 'reactstrap';
+// import { Table, Input, Button } from 'reactstrap';
 import Kartu from '../components/card'
-import DropdownCustom from '../components/dropdown'
-import {connect} from 'react-redux'
+// import DropdownCustom from '../components/dropdown'
+// import {connect} from 'react-redux'
 import { API_URL } from '../helpers/apiUrl';
 
 class Home extends Component{
@@ -16,15 +16,15 @@ class Home extends Component{
     componentDidMount(){
         Axios.get(API_URL + '/products')
         .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({data: res.data})
         })
     }
 
     renderCardProduct = () => {
-        return this.state.data.map((val) => {
+        return this.state.data.map((val, index) => {
             return(
-                <Kartu nama={val.nama} harga={val.harga} image={val.image}/>
+                <Kartu key={index} nama={val.nama} harga={val.harga} image={val.image}/>
             )
         })
     }

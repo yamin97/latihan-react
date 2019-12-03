@@ -4,7 +4,7 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  // CarouselCaption
 } from 'reactstrap';
 
 const items = [
@@ -26,7 +26,7 @@ const items = [
 ];
 
 const CarouselHome = (props) => {
-    console.log(props.data)
+    // console.log(props.data)
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -47,12 +47,12 @@ const CarouselHome = (props) => {
     setActiveIndex(newIndex);
   }
 
-  const slides = props.data.map((item) => {
+  const slides = props.data.map((item, index) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.id}
+        key={index}
       >
         <img src={item.image} alt={item.nama} style={{width: '300px', height: '300px', objectFit: 'cover'}}/>
         {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
