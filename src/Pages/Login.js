@@ -43,7 +43,9 @@ class Login extends Component{
         return(
             <div className='d-flex justify-content-center row'>
                 <div>
+                    Username
                     <Input type='text' innerRef={(text) => this.text = text}/>
+                    Password
                     <Input type='password' innerRef={(pass) => this.pass = pass}/>
                     <Button  onClick={this.loginUser}>
                         Click Me !

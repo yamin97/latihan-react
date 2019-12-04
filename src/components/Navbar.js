@@ -70,9 +70,11 @@ class Header extends React.Component {
                         </DropdownItem>
                       </Link>
                     <DropdownItem divider />
-                    <DropdownItem>
-                      Register
-                    </DropdownItem>
+                    <Link to='/register'>
+                      <DropdownItem>
+                        Register
+                      </DropdownItem>
+                    </Link>
                   </DropdownMenu>
                   }
               </UncontrolledDropdown>

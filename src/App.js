@@ -5,6 +5,8 @@ import Login from './Pages/Login';
 import Navbar from './components/Navbar';
 import List from './Pages/List'
 import Belajar from './Pages/belajarRedux'
+import Register from './Pages/Register';
+import Test from './Pages/Testing';
 
 
 class App extends Component{
@@ -15,8 +17,10 @@ class App extends Component{
         <Navbar />
         <Route path='/' component={Home} exact />   
         <Route path='/list' component={List} />   
-        <Route path='/login' component={Login} />      
+        <Route path='/login' component={Login} />  
+        <Route path='/register' component={Register} />    
         <Route path='/belajar' component={Belajar} />
+        <Route path='/test' component={Test} />
       </div>
     )
   }
